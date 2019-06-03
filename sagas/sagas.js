@@ -67,5 +67,92 @@ const watchLogin = function* watchLogin(){
   })
 }
 
+const watchPostTweet = function* watchPostTweet() {
+  yield takeEvery("POST_TWEET", function* (action) {
+    if(action.payload.tweetContent) {
+      yield put({type: "POST_TWEET_STARTED"});
+      try {
+        yield call(postTweet.bind(this, action.payload));
+        yield put({type: "POST_TWEET_SUCCESS"});
+        yield put({type: "FETCH_TWEETS"});
+      } catch (error) {
+        yield put({type: "POST_TWEET_FAILED"});
+      }
+    } else {
+      yield put({type: "POST_TWEET_FAILED"})
+    }
+  })
+}
+
+const watchFetchTweetReplies = function* watchFetchTweetReplies() {
+  yield takeEvery("FETCH_TWEET_REPLIES", fetchTweetReplies)
+}
+
+const fetchTweetReplies = function* fetchTweetReplies(){
+  yield put({type: "FETCH_TWEETS_REPLIED_STARTED"});
+  try {
+    const tweetReplies = yield call(fetchTweetRepliesData);
+    yield put({type: "FETCH_TWEET_REPLIES_FULFILLED", payload: tweetReplies});
+  } catch (error) {
+    yield put({type: "FETCH_TWEET_REPLIES_REJECTED", payload: error});
+  }
+};
+
+const rootSaga = function* rootSaga() {
+  console.log("into root saga");
+  yield all([
+    watchFetchTweets(),
+    watchFetchUserTweets(),
+    watchSetUsername(),
+    watchSetPassword(),
+    watchLogin(),
+    watchPostTweet(),
+    watchFetchTweetReplies()
+  ]);
+};
+
+export default rootSaga;
+
+const fetchTweetsData = () => {
+  return fetch("http:///localhost:3000//tweetReplies").then(response => {
+    console.log(response);
+    return response.data;
+  })
+}
+
+const fetchUserTweetsData = () => {
+  return fetch("http://localhost:3000/userTweets").then(response => {
+    console.log(response);
+    return response.data;
+  });
+};
+
+const attemptLogin = () => {
+  return fetch("http://localhost:3000/login").then(response => {
+    return response.data;
+  });
+};
+
+const postTweet = payload => {
+  fetch('http://localhost:3000/tweets', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: faker.random.number(100000),
+        time: new Date().toISOString(),
+        user: payload.user,
+        tweetContent: payload.tweetContent,
+        likes: 0,
+        retweets: 0,
+        replies: 0
+      })
+    })
+      .then(response => {
+        return response;
+      })
+  
+};
 
 
