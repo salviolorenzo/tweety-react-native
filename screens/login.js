@@ -1,10 +1,7 @@
-import * as Expo from "expo";
-import React, { Component } from "react";
-import { StyleSheet } from "react-native";
-import getTheme from "../native-base-theme/components";
-import platform from "../native-base-theme/variables/platform";
-import material from "../native-base-theme/variables/material";
-import { NavigationActions } from "react-navigation";
+import * as Expo from 'expo';
+import { React, Component } from 'react';
+import { StyleSheet } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import {
   Container,
   Button,
@@ -27,9 +24,9 @@ import {
   Footer,
   FooterTab,
   Spinner
-} from "native-base";
-import { setUsername } from "../actions/loginActions";
-import { connect } from "react-redux";
+} from 'native-base';
+import { setUsername } from '../actions/loginActions';
+import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
   topMargin: {
@@ -37,25 +34,25 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 10,
-    backgroundColor: "white"
+    backgroundColor: 'white'
   },
   heading: {
     fontSize: 32,
-    fontWeight: "400",
+    fontWeight: '400',
     marginBottom: 30
   },
   footer: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     elevation: 3,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 0.2 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
     height: 60,
     padding: 5,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-end"
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end'
   }
 });
 
@@ -72,42 +69,42 @@ export default class LoginScreen extends Component {
   }
   login() {
     this.props.dispatch({
-      type: "DO_LOGIN",
+      type: 'DO_LOGIN',
       payload: { username: this.props.username, password: this.props.password }
     });
   }
 
   componentWillMount() {
-    console.log("component will mount");
+    console.log('component will mount');
   }
 
   render() {
-    if (this.props.loginStatus === "success") {
+    if (this.props.loginStatus === 'success') {
       console.log(this.props.navigation);
       this.props.navigation.dispatch(
         NavigationActions.reset({
           index: 0,
-          actions: [NavigationActions.navigate({ routeName: "Home" })]
+          actions: [NavigationActions.navigate({ routeName: 'Home' })]
         })
       );
     }
     return (
       <StyleProvider style={getTheme(platform)}>
         <Container style={styles.topMargin}>
-          <Header noShadow style={{ backgroundColor: "white" }}>
+          <Header noShadow style={{ backgroundColor: 'white' }}>
             <Left style={{ flex: 1 }} />
             <Body style={{ flex: 1 }}>
               <Icon
                 name="logo-twitter"
-                style={{ alignSelf: "center", color: "#4286f4" }}
+                style={{ alignSelf: 'center', color: '#4286f4' }}
               />
             </Body>
             <Right style={{ flex: 1 }}>
               <Button transparent>
-                <Text style={{ color: "#4286f4" }}>Sign up</Text>
+                <Text style={{ color: '#4286f4' }}>Sign up</Text>
               </Button>
               <Button transparent>
-                <Icon name="more" style={{ color: "#4286f4" }} />
+                <Icon name="more" style={{ color: '#4286f4' }} />
               </Button>
             </Right>
           </Header>
@@ -119,9 +116,10 @@ export default class LoginScreen extends Component {
                 <Input
                   onChangeText={username =>
                     this.props.dispatch({
-                      type: "SET_USERNAME",
+                      type: 'SET_USERNAME',
                       payload: username
-                    })}
+                    })
+                  }
                 />
               </Item>
               <Item stackedLabel last>
@@ -130,9 +128,10 @@ export default class LoginScreen extends Component {
                   secureTextEntry={true}
                   onChangeText={password =>
                     this.props.dispatch({
-                      type: "SET_PASSWORD",
+                      type: 'SET_PASSWORD',
                       payload: password
-                    })}
+                    })
+                  }
                 />
               </Item>
             </Form>
@@ -141,25 +140,25 @@ export default class LoginScreen extends Component {
               style={{
                 margin: 15,
                 marginTop: 25,
-                width: "50%",
-                alignSelf: "center"
+                width: '50%',
+                alignSelf: 'center'
               }}
             >
               <Text
-                style={{ textAlign: "center", fontSize: 14, color: "#AAA" }}
+                style={{ textAlign: 'center', fontSize: 14, color: '#AAA' }}
               >
                 Forgot password?
               </Text>
             </Button>
           </Content>
           <Footer style={styles.footer}>
-            {this.props.loginStatus === "ongoing" ? <Spinner /> : null}
-            {this.props.loginStatus === "failed" ? (
-              <Text style={{ color: "#f92a3f" }}>Login Failed</Text>
+            {this.props.loginStatus === 'ongoing' ? <Spinner /> : null}
+            {this.props.loginStatus === 'failed' ? (
+              <Text style={{ color: '#f92a3f' }}>Login Failed</Text>
             ) : null}
             <Button
               rounded
-              style={{ backgroundColor: "#4286f4", marginLeft: 20 }}
+              style={{ backgroundColor: '#4286f4', marginLeft: 20 }}
               onPress={this.login.bind(this)}
             >
               <Text>Log in</Text>

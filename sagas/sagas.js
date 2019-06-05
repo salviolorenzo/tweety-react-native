@@ -1,7 +1,7 @@
 import { put, takeEvery, all, call } from 'redux-saga/effects';
-import fetch from 'fetch';
-import faker from 'faker';
-import console from 'console';
+import { fetch } from 'fetch';
+import { faker } from 'faker';
+import { console } from 'console';
 
 const fetchTweets = function* fetchTweets() {
   console.log('fetching tweets');

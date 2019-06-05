@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import * as Expo from "expo";
-import Modal from "react-native-modalbox";
-import Dimensions from "Dimensions";
+import { React, Component } from 'react';
+import * as Expo from 'expo';
+import { Modal } from 'react-native-modalbox';
 import {
   StyleSheet,
   View,
@@ -9,7 +8,7 @@ import {
   FlatList,
   TouchableHighlight,
   Platform
-} from "react-native";
+} from 'react-native';
 import {
   Container,
   Header,
@@ -28,8 +27,8 @@ import {
   Footer,
   Input,
   Right
-} from "native-base";
-import { connect } from "react-redux";
+} from 'native-base';
+import { connect } from 'react-redux';
 // import { fetchTweets } from "../actions/tweetsActions";
 // import ScrollableTabView, {
 //   ScrollableTabBar
@@ -37,17 +36,17 @@ import { connect } from "react-redux";
 
 const styles = StyleSheet.create({
   topMargin: {
-    marginTop: Platform.OS === "ios" ? 0 : Expo.Constants.statusBarHeight,
-    backgroundColor: "white",
+    marginTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight,
+    backgroundColor: 'white',
     zIndex: -1
   },
   content: {
     padding: 10,
-    backgroundColor: "white"
+    backgroundColor: 'white'
   },
   heading: {
     fontSize: 32,
-    fontWeight: "400",
+    fontWeight: '400',
     marginBottom: 30
   },
   tweet: {
@@ -55,18 +54,18 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 10,
     paddingRight: 10,
-    borderBottomColor: "#bbb",
+    borderBottomColor: '#bbb',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    flexDirection: "column"
+    flexDirection: 'column'
   },
   tweetText: {
     marginTop: 10,
     fontSize: 18,
-    color: "#555"
+    color: '#555'
   },
   tweetFooter: {
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     padding: 0
   },
   badgeCount: {
@@ -74,30 +73,29 @@ const styles = StyleSheet.create({
     paddingLeft: 5
   },
   footerIcons: {
-    flexDirection: "row",
-    alignItems: "center"
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   modalFooter: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     elevation: 3,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 0.2 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
     height: 54,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     padding: 5
   },
   modal: {
-    justifyContent: "flex-start",
-    alignItems: "center",
-    position: "absolute",
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    position: 'absolute',
     zIndex: 4,
     elevation: 4,
-    height: Dimensions.get("window").height - Expo.Constants.statusBarHeight,
     marginTop: Expo.Constants.statusBarHeight / 2
   }
 });
@@ -117,21 +115,21 @@ export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newTweetContent: ""
+      newTweetContent: ''
     };
   }
 
   openModal() {
-    this.props.dispatch({ type: "NEW_TWEET_MODAL_OPEN" });
+    this.props.dispatch({ type: 'NEW_TWEET_MODAL_OPEN' });
   }
 
   closeModal() {
-    this.props.dispatch({ type: "NEW_TWEET_MODAL_CLOSE" });
+    this.props.dispatch({ type: 'NEW_TWEET_MODAL_CLOSE' });
   }
 
   postTweet() {
     this.props.dispatch({
-      type: "POST_TWEET",
+      type: 'POST_TWEET',
       payload: {
         user: this.props.user,
         tweetContent: this.state.newTweetContent
@@ -140,43 +138,43 @@ export default class HomeScreen extends Component {
   }
 
   componentWillMount() {
-    this.props.dispatch({ type: "FETCH_TWEETS" });
+    this.props.dispatch({ type: 'FETCH_TWEETS' });
   }
 
   _keyExtractor = (item, index) => item.id;
 
   _profileClick(user) {
-    this.props.navigation.navigate("Profile", user);
+    this.props.navigation.navigate('Profile', user);
   }
 
   _tweetDetails(tweet) {
-    this.props.navigation.navigate("TweetDetails", tweet);
+    this.props.navigation.navigate('TweetDetails', tweet);
   }
 
   render() {
-    if (this.props.tweetPosted === "success") {
+    if (this.props.tweetPosted === 'success') {
       this.closeModal();
     }
     return (
       <Container>
-        {this.props.newTweetModalOpen && Platform.OS === "android" ? null : (
+        {this.props.newTweetModalOpen && Platform.OS === 'android' ? null : (
           <Header style={styles.topMargin}>
             <Left>
               <Thumbnail small source={{ uri: this.props.user.avatar }} />
             </Left>
             <Body>
-              <Title style={{ color: "#121212" }}>Home</Title>
+              <Title style={{ color: '#121212' }}>Home</Title>
             </Body>
             <Right>
               <Button transparent onPress={this.openModal.bind(this)}>
-                <Icon name="md-create" style={{ color: "#4286f4" }} />
+                <Icon name="md-create" style={{ color: '#4286f4' }} />
               </Button>
             </Right>
           </Header>
         )}
 
         <Modal
-          ref={"newTweetModal"}
+          ref={'newTweetModal'}
           backdrop={true}
           style={styles.modal}
           isOpen={this.props.newTweetModalOpen}
@@ -184,41 +182,41 @@ export default class HomeScreen extends Component {
         >
           <View
             style={{
-              alignSelf: "flex-start",
-              alignItems: "center",
-              flexDirection: "row",
+              alignSelf: 'flex-start',
+              alignItems: 'center',
+              flexDirection: 'row',
               padding: 5,
               paddingRight: 10
             }}
           >
             <Button transparent onPress={this.closeModal.bind(this)}>
-              <Icon name="close" style={{ color: "black", fontSize: 32 }} />
+              <Icon name="close" style={{ color: 'black', fontSize: 32 }} />
             </Button>
             <View style={{ flex: 1 }} />
             <Thumbnail
               small
               source={{
                 uri:
-                  "https://i1.wallpaperscraft.ru/image/betmen_art_minimalizm_107658_300x240.jpg"
+                  'https://i1.wallpaperscraft.ru/image/betmen_art_minimalizm_107658_300x240.jpg'
               }}
             />
           </View>
           <View
             style={{
               flex: 1,
-              justifyContent: "flex-start",
-              alignItems: "flex-start",
-              width: "100%"
+              justifyContent: 'flex-start',
+              alignItems: 'flex-start',
+              width: '100%'
             }}
           >
             <Input
               style={{
                 flex: 1,
-                width: "100%",
+                width: '100%',
                 fontSize: 24,
-                alignContent: "flex-start",
-                justifyContent: "flex-start",
-                textAlignVertical: "top",
+                alignContent: 'flex-start',
+                justifyContent: 'flex-start',
+                textAlignVertical: 'top',
                 margin: 5
               }}
               multiline
@@ -238,29 +236,29 @@ export default class HomeScreen extends Component {
             </Button>
 
             <View style={{ flex: 1 }} />
-            {this.props.tweetPosted === "ongoing" ? <Spinner /> : null}
+            {this.props.tweetPosted === 'ongoing' ? <Spinner /> : null}
             <Button
               rounded
-              style={{ color: "#4286f4", height: 40, width: 94 }}
+              style={{ color: '#4286f4', height: 40, width: 94 }}
               onPress={this.postTweet.bind(this)}
             >
-              <Text style={{ color: "white" }}>Tweet</Text>
+              <Text style={{ color: 'white' }}>Tweet</Text>
             </Button>
           </View>
         </Modal>
-        <Content style={{ backgroundColor: "white" }}>
+        <Content style={{ backgroundColor: 'white' }}>
           {this.props.fetchingTweets ? (
             <View
               contentContainerStyle={{
                 flex: 1,
-                alignItems: "center",
-                justifyContent: "center"
+                alignItems: 'center',
+                justifyContent: 'center'
               }}
             >
               <Spinner color="blue" />
             </View>
           ) : (
-            <View style={{ justifyContent: "flex-start" }}>
+            <View style={{ justifyContent: 'flex-start' }}>
               <FlatList
                 data={this.props.tweets}
                 keyExtractor={this._keyExtractor}
@@ -271,18 +269,18 @@ export default class HomeScreen extends Component {
                       underlayColor="white"
                       activeOpacity={0.75}
                     >
-                      <View style={{ flex: 1, flexDirection: "row" }}>
+                      <View style={{ flex: 1, flexDirection: 'row' }}>
                         <Thumbnail source={{ uri: item.user.avatar }} />
                         <View
                           style={{
-                            flexDirection: "column",
-                            justifyContent: "flex-start"
+                            flexDirection: 'column',
+                            justifyContent: 'flex-start'
                           }}
                         >
                           <Text
                             style={{
                               paddingLeft: 15,
-                              fontWeight: "bold",
+                              fontWeight: 'bold',
                               fontSize: 20
                             }}
                           >
@@ -292,11 +290,11 @@ export default class HomeScreen extends Component {
                           <Text
                             style={{
                               paddingLeft: 15,
-                              color: "#aaa",
+                              color: '#aaa',
                               fontSize: 16
                             }}
                           >
-                            {"@" + item.user.username}
+                            {'@' + item.user.username}
                           </Text>
                         </View>
                       </View>
@@ -337,9 +335,9 @@ export default class HomeScreen extends Component {
               {this.state.newTweetModalOpen ? null : (
                 <Fab
                   position="bottomRight"
-                  style={{ backgroundColor: "#4286f4", zIndex: -1 }}
+                  style={{ backgroundColor: '#4286f4', zIndex: -1 }}
                   onPress={this.openModal.bind(this)}
-                  ref={"FAB"}
+                  ref={'FAB'}
                 >
                   <Icon name="md-create" />
                 </Fab>

@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import moment from "moment";
-import * as Expo from "expo";
-import Modal from "react-native-modalbox";
-import Dimensions from "Dimensions";
+import { React, Component } from 'react';
+import { moment } from 'moment';
+import * as Expo from 'expo';
+import { Modal } from 'react-native-modalbox';
 import {
   StyleSheet,
   View,
@@ -10,7 +9,7 @@ import {
   FlatList,
   TouchableHighlight,
   Platform
-} from "react-native";
+} from 'react-native';
 import {
   Container,
   Header,
@@ -29,42 +28,42 @@ import {
   Footer,
   Input,
   Right
-} from "native-base";
-import { connect } from "react-redux";
-import { fetchTweets } from "../actions/tweetsActions";
+} from 'native-base';
+import { connect } from 'react-redux';
+import { fetchTweets } from '../actions/tweetsActions';
 // import ScrollableTabView, {
 //   ScrollableTabBar
 // } from "react-native-scrollable-tab-view";
 
 const styles = StyleSheet.create({
   tweetHead: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     padding: 10,
     paddingBottom: 0
   },
   timeStamp: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
     padding: 10,
-    borderBottomColor: "#CCC",
+    borderBottomColor: '#CCC',
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   tweetFooter: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    borderBottomColor: "#CCC",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    borderBottomColor: '#CCC',
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   footerIcons: {
-    flexDirection: "row",
-    alignItems: "center"
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   tweetReply: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
     padding: 10,
     paddingBottom: 0
   }
@@ -87,11 +86,11 @@ export default class TweetDefailsScreen extends Component {
   }
 
   componentWillMount() {
-    this.props.dispatch({ type: "FETCH_TWEET_REPLIES" });
+    this.props.dispatch({ type: 'FETCH_TWEET_REPLIES' });
   }
 
   _goBack() {
-    console.log("Back button pressed");
+    console.log('Back button pressed');
     this.props.navigation.goBack();
   }
 
@@ -101,7 +100,7 @@ export default class TweetDefailsScreen extends Component {
     console.log(this.props);
     return (
       <Container>
-        <Header style={{ backgroundColor: "white" }}>
+        <Header style={{ backgroundColor: 'white' }}>
           <Left>
             <Button transparent onPress={this._goBack.bind(this)}>
               <Icon name="arrow-back" />
@@ -112,23 +111,23 @@ export default class TweetDefailsScreen extends Component {
           </Body>
           <Right />
         </Header>
-        <Content style={{ backgroundColor: "white" }}>
+        <Content style={{ backgroundColor: 'white' }}>
           <View style={styles.tweetHead}>
             <Thumbnail source={{ uri: this.tweet.user.avatar }} />
             <View
               style={{
                 flex: 1,
-                justifyContent: "center",
+                justifyContent: 'center',
                 paddingLeft: 10,
                 height: 56
               }}
             >
-              <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+              <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
                 {this.tweet.user.name}
               </Text>
 
-              <Text style={{ color: "#999", fontSize: 18 }}>
-                {"@" + this.tweet.user.username}
+              <Text style={{ color: '#999', fontSize: 18 }}>
+                {'@' + this.tweet.user.username}
               </Text>
             </View>
           </View>
@@ -138,21 +137,21 @@ export default class TweetDefailsScreen extends Component {
             </Text>
           </View>
           <View style={styles.timeStamp}>
-            <Text style={{ color: "#888", fontSize: 16 }}>
-              {this.tweetTime.format("hh[:]mm A [-] DD MMM YY")}
+            <Text style={{ color: '#888', fontSize: 16 }}>
+              {this.tweetTime.format('hh[:]mm A [-] DD MMM YY')}
             </Text>
           </View>
           <View style={styles.timeStamp}>
-            <Text style={{ fontWeight: "bold", fontSize: 16, paddingRight: 5 }}>
+            <Text style={{ fontWeight: 'bold', fontSize: 16, paddingRight: 5 }}>
               {this.tweet.retweets}
             </Text>
-            <Text style={{ color: "#888", fontSize: 16, paddingRight: 20 }}>
+            <Text style={{ color: '#888', fontSize: 16, paddingRight: 20 }}>
               Retweets
             </Text>
-            <Text style={{ fontWeight: "bold", fontSize: 16, paddingRight: 5 }}>
+            <Text style={{ fontWeight: 'bold', fontSize: 16, paddingRight: 5 }}>
               {this.tweet.likes}
             </Text>
-            <Text style={{ color: "#888", fontSize: 16 }}>Likes</Text>
+            <Text style={{ color: '#888', fontSize: 16 }}>Likes</Text>
           </View>
           <View style={styles.tweetFooter}>
             <View>
@@ -192,40 +191,40 @@ export default class TweetDefailsScreen extends Component {
                     <Thumbnail small source={{ uri: item.user.avatar }} />
                     <View
                       style={{
-                        justifyContent: "flex-start",
-                        alignItems: "flex-start",
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
                         paddingLeft: 10,
                         paddingRight: 10,
-                        width: "93%"
+                        width: '93%'
                       }}
                     >
-                      <View style={{ flexDirection: "row", maxHeight: 22 }}>
-                        <Text style={{ fontWeight: "bold" }}>
+                      <View style={{ flexDirection: 'row', maxHeight: 22 }}>
+                        <Text style={{ fontWeight: 'bold' }}>
                           {item.user.name}
                         </Text>
                         <Text
-                          style={{ color: "#888", flex: 1, paddingLeft: 5 }}
+                          style={{ color: '#888', flex: 1, paddingLeft: 5 }}
                         >
-                          {"@" + item.user.username}
+                          {'@' + item.user.username}
                         </Text>
                       </View>
                       <View
                         style={{
-                          flexDirection: "row",
+                          flexDirection: 'row',
                           paddingTop: 5,
                           maxHeight: 22
                         }}
                       >
-                        <Text style={{ color: "#888" }}>Replying to</Text>
-                        <Text style={{ color: "#4286f4", flex: 1 }}>
-                          {"@" + this.tweet.user.username}
+                        <Text style={{ color: '#888' }}>Replying to</Text>
+                        <Text style={{ color: '#4286f4', flex: 1 }}>
+                          {'@' + this.tweet.user.username}
                         </Text>
                       </View>
                       <Text style={{ paddingTop: 5 }}>{item.tweetContent}</Text>
                       <View
                         style={StyleSheet.flatten([
                           styles.tweetFooter,
-                          { width: "100%" }
+                          { width: '100%' }
                         ])}
                       >
                         <View style={styles.footerIcons}>

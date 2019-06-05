@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import * as Expo from "expo";
+import { React, Component } from 'react';
+import * as Expo from 'expo';
 import {
   StyleSheet,
   View,
@@ -9,7 +9,7 @@ import {
   FlatList,
   TouchableHighlight,
   Animated
-} from "react-native";
+} from 'react-native';
 import {
   Container,
   Header,
@@ -24,10 +24,10 @@ import {
   Icon,
   Button,
   Spinner
-} from "native-base";
+} from 'native-base';
 // import ParallaxScrollView from "react-native-parallax-scroll-view";
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 // import { fetchTweets } from "../actions/tweetsActions";
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 10,
     paddingRight: 10,
-    flexDirection: "column",
-    backgroundColor: "white"
+    flexDirection: 'column',
+    backgroundColor: 'white'
   },
   avatarbg: {
     //marginTop: -95,
@@ -69,11 +69,11 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontSize: 26,
-    fontWeight: "500",
+    fontWeight: '500',
     marginLeft: 14
   },
   usernameText: {
-    color: "#777",
+    color: '#777',
     fontSize: 16,
     marginLeft: 14
   },
@@ -87,18 +87,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 14,
     marginTop: 10,
-    color: "#555"
+    color: '#555'
   },
   topMargin: {
     // marginTop: 25
   },
   content: {
     padding: 10,
-    backgroundColor: "white"
+    backgroundColor: 'white'
   },
   heading: {
     fontSize: 32,
-    fontWeight: "400",
+    fontWeight: '400',
     marginBottom: 30
   },
   tweet: {
@@ -106,18 +106,18 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 10,
     paddingRight: 10,
-    borderBottomColor: "#bbb",
+    borderBottomColor: '#bbb',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    flexDirection: "column"
+    flexDirection: 'column'
   },
   tweetText: {
     marginTop: 10,
     fontSize: 18,
-    color: "#555"
+    color: '#555'
   },
   tweetFooter: {
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     padding: 10
   },
   badgeCount: {
@@ -125,8 +125,8 @@ const styles = StyleSheet.create({
     paddingLeft: 5
   },
   footerIcons: {
-    flexDirection: "row",
-    alignItems: "center"
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 });
 
@@ -148,11 +148,11 @@ export default class ProfileScreen extends Component {
   }
 
   componentWillMount() {
-    this.props.dispatch({ type: "FETCH_USER_TWEETS" });
+    this.props.dispatch({ type: 'FETCH_USER_TWEETS' });
   }
 
   _goBack() {
-    console.log("Back button pressed");
+    console.log('Back button pressed');
     this.props.navigation.goBack();
   }
 
@@ -189,31 +189,31 @@ export default class ProfileScreen extends Component {
           source={{ uri: this.user.cover }}
           style={{
             marginTop: Expo.Constants.statusBarHeight,
-            width: "100%",
+            width: '100%',
             height: 150,
             zIndex: 2,
-            position: "absolute",
+            position: 'absolute',
             transform: [{ translateY: coverMov }]
           }}
         />
         <Animated.View
           style={{
-            width: "100%",
-            position: "absolute",
-            backgroundColor: "#121212",
+            width: '100%',
+            position: 'absolute',
+            backgroundColor: '#121212',
             height: 56 + Expo.Constants.statusBarHeight,
             zIndex: 13,
             opacity: headerOp,
             paddingTop: Expo.Constants.statusBarHeight,
-            alignItems: "center"
+            alignItems: 'center'
           }}
         >
           <Animated.View
             style={{
               opacity: headerContentOp,
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "flex-start"
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'flex-start'
             }}
           >
             <Button
@@ -224,7 +224,7 @@ export default class ProfileScreen extends Component {
             >
               <Icon name="arrow-back" />
             </Button>
-            <Text style={{ fontSize: 24, color: "white", flex: 1 }}>
+            <Text style={{ fontSize: 24, color: 'white', flex: 1 }}>
               {this.user.name}
             </Text>
             <Button transparent iconRight light>
@@ -235,7 +235,7 @@ export default class ProfileScreen extends Component {
         <Animated.View
           style={{
             zIndex: 4,
-            position: "absolute",
+            position: 'absolute',
             top: 135,
             opacity: avatarOp,
             transform: [{ translateY: avatarMov }]
@@ -244,7 +244,7 @@ export default class ProfileScreen extends Component {
           <Thumbnail
             large
             source={{
-              uri: "https://data.humdata.org/crisis-tiles/12/2485/1645.png"
+              uri: 'https://data.humdata.org/crisis-tiles/12/2485/1645.png'
             }}
             style={styles.avatarbg}
           />
@@ -273,17 +273,17 @@ export default class ProfileScreen extends Component {
               { marginTop: 150 + Expo.Constants.statusBarHeight }
             ])}
           >
-            <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
               <Button rounded bordered style={styles.headerButton}>
                 <Icon
                   name="ios-mail-outline"
-                  style={{ color: "#4286f4", paddingLeft: 8 }}
+                  style={{ color: '#4286f4', paddingLeft: 8 }}
                 />
               </Button>
               <Button rounded bordered style={styles.headerButton}>
                 <Icon
                   name="ios-notifications-outline"
-                  style={{ color: "#4286f4", paddingLeft: 8 }}
+                  style={{ color: '#4286f4', paddingLeft: 8 }}
                 />
               </Button>
               <Button
@@ -295,49 +295,49 @@ export default class ProfileScreen extends Component {
                   { paddingLeft: 15, paddingRight: 15 }
                 ])}
               >
-                <Text style={{ color: "#4286f4" }}>Follow</Text>
+                <Text style={{ color: '#4286f4' }}>Follow</Text>
               </Button>
             </View>
           </View>
 
           <View style={styles.header}>
             <Text style={styles.nameText}>{this.user.name}</Text>
-            <Text style={styles.usernameText}>{"@" + this.user.username}</Text>
+            <Text style={styles.usernameText}>{'@' + this.user.username}</Text>
             <Text style={styles.bioText}>{this.user.bio}</Text>
             <Text style={styles.locationText}>
               <Icon small name="ios-pin-outline" style={{ fontSize: 16 }} />
-              {" " + this.user.location}
+              {' ' + this.user.location}
             </Text>
-            <View style={{ flexDirection: "row", marginTop: 10 }}>
-              <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: 'row', marginTop: 10 }}>
+              <View style={{ flexDirection: 'row' }}>
                 <Text
-                  style={{ fontSize: 16, fontWeight: "bold", marginLeft: 14 }}
+                  style={{ fontSize: 16, fontWeight: 'bold', marginLeft: 14 }}
                 >
                   {this.user.following}
                 </Text>
-                <Text style={{ fontSize: 16, color: "#555", marginLeft: 5 }}>
+                <Text style={{ fontSize: 16, color: '#555', marginLeft: 5 }}>
                   Following
                 </Text>
               </View>
-              <View style={{ flexDirection: "row" }}>
+              <View style={{ flexDirection: 'row' }}>
                 <Text
-                  style={{ fontSize: 16, fontWeight: "bold", marginLeft: 30 }}
+                  style={{ fontSize: 16, fontWeight: 'bold', marginLeft: 30 }}
                 >
                   {this.user.followers}
                 </Text>
-                <Text style={{ fontSize: 16, color: "#555", marginLeft: 5 }}>
+                <Text style={{ fontSize: 16, color: '#555', marginLeft: 5 }}>
                   Followers
                 </Text>
               </View>
             </View>
           </View>
-          <View style={{ backgroundColor: "white", marginTop: 8 }}>
+          <View style={{ backgroundColor: 'white', marginTop: 8 }}>
             {this.props.fetchingUserTweets ? (
               <View
                 contentContainerStyle={{
                   flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center"
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
               >
                 <Spinner color="blue" />
@@ -348,18 +348,18 @@ export default class ProfileScreen extends Component {
                 keyExtractor={this._keyExtractor}
                 renderItem={({ item }) => (
                   <View style={styles.tweet}>
-                    <View style={{ flex: 1, flexDirection: "row" }}>
+                    <View style={{ flex: 1, flexDirection: 'row' }}>
                       <Thumbnail source={{ uri: this.user.avatar }} />
                       <View
                         style={{
-                          flexDirection: "column",
-                          justifyContent: "flex-start"
+                          flexDirection: 'column',
+                          justifyContent: 'flex-start'
                         }}
                       >
                         <Text
                           style={{
                             paddingLeft: 15,
-                            fontWeight: "bold",
+                            fontWeight: 'bold',
                             fontSize: 20
                           }}
                         >
@@ -369,11 +369,11 @@ export default class ProfileScreen extends Component {
                         <Text
                           style={{
                             paddingLeft: 15,
-                            color: "#aaa",
+                            color: '#aaa',
                             fontSize: 16
                           }}
                         >
-                          {"@" + this.user.username}
+                          {'@' + this.user.username}
                         </Text>
                       </View>
                     </View>

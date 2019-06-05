@@ -1,4 +1,4 @@
-import fetch from 'fetch';
+import { fetch } from 'fetch';
 import { connect } from 'react-redux';
 
 export function fetchTweets() {

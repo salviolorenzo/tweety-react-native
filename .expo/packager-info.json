@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 22716,
-  "expoServerNgrokUrl": "https://nn-jdc.anonymous.twitterclone.exp.direct",
-  "packagerNgrokUrl": "https://packager.nn-jdc.anonymous.twitterclone.exp.direct",
-  "ngrokPid": 22734
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
